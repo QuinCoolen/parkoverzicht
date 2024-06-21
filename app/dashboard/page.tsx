@@ -50,9 +50,28 @@ export default async function DashboardPage() {
                 </ListboxItem>
               ))}
             </Listbox>
+            <Listbox
+            className='hidden'
+              aria-label="Actions"
+              classNames={{
+                base: 'bg-white h-full w-full shadow-md',
+                list: 'max-h-[356px] overflow-y-scroll no-scrollbar',
+              }}
+              onAction={(key) => alert(key)}
+            >
+              {(await worlds).map((world) => (
+                <ListboxItem
+                  key={world.id}
+                  classNames={{ title: 'text-xl text-gray-500 font-semibold' }}
+                  value={world.id}
+                >
+                  {world.name}
+                </ListboxItem>
+              ))}
+            </Listbox>
           </div>
         </div>
-        <div className="fill-white w-full flex justify-center overflow-hidden leading-[0] rotate-180">
+        <div className="fill-white w-full flex justify-center overflow-hidden leading-[0] rotate-180 mt-3">
           <svg
             className="relative block w-[calc(100% + 1.3px)] h-[161px]"
             data-name="Layer 1"
