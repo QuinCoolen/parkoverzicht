@@ -5,16 +5,16 @@ import {
   NavbarMenuToggle,
   NavbarBrand,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
-import Image from "next/image";
-import { Link } from "@nextui-org/link";
-import NextLink from "next/link";
+} from '@nextui-org/navbar';
+import Image from 'next/image';
+import { Link } from '@nextui-org/link';
+import NextLink from 'next/link';
 
-import { siteConfig } from "@/config/site";
-import { UserIcon } from "./icons";
+import { UserIcon } from './icons';
+
+import { siteConfig } from '@/config/site';
 
 export const Navbar = () => {
-
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent justify="start">
@@ -23,11 +23,11 @@ export const Navbar = () => {
       <NavbarContent justify="center">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-center items-center gap-1" href="/">
-            <Image src="/tvl_logo.svg" alt="logo" width={150} height={150} />
+            <Image alt="logo" height={150} src="/tvl_logo.svg" width={150} />
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent justify="end" className="text-tvblue">
+      <NavbarContent className="text-tvblue" justify="end">
         <p className="opacity-50">Janice de Vries</p>
         <UserIcon />
       </NavbarContent>
@@ -39,10 +39,10 @@ export const Navbar = () => {
               <Link
                 color={
                   index === 2
-                    ? "primary"
+                    ? 'primary'
                     : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                      ? 'danger'
+                      : 'foreground'
                 }
                 href={item.href}
                 size="lg"

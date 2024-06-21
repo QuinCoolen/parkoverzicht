@@ -1,30 +1,38 @@
-'use client'
+'use client';
 
-import { EditIcon, EmailIcon, PasswordIcon, PhoneIcon } from "../../../components/icons";
-import { Avatar, Button, Divider } from "@nextui-org/react";
-import { AccountInput } from "../../../components/account/input";
-import { useState } from "react";
-import { AccountData, InputType } from "../../../types/account";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Avatar, Button, Divider } from '@nextui-org/react';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import {
+  EditIcon,
+  EmailIcon,
+  PasswordIcon,
+  PhoneIcon,
+} from '../../../components/icons';
+import { AccountInput } from '../../../components/account/input';
+import { AccountData, InputType } from '../../../types/account';
 
 export default function AccountPage() {
   const [readOnly, setReadOnly] = useState(true);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<AccountData>()
+  const { register, handleSubmit} = useForm<AccountData>();
 
-
-  const onSubmit: SubmitHandler<AccountData> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<AccountData> = (data) => console.log(data);
 
   return (
-    <form className="flex flex-col gap-4 w-2/5" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex flex-col gap-4 w-2/5"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-row justify-between items-center w-full">
         <div className="flex flex-row items-center gap-4">
-          <Avatar size="lg" className="w-24 h-24" name="Janice de Vries" classNames={{ name: "text-3xl text-white", base: "bg-tvblue" }} />
+          <Avatar
+            className="w-24 h-24"
+            classNames={{ name: 'text-3xl text-white', base: 'bg-tvblue' }}
+            name="Janice de Vries"
+            size="lg"
+          />
           <p>Janice de Vries</p>
         </div>
         <EditIcon onClick={() => setReadOnly(false)} />
@@ -32,35 +40,44 @@ export default function AccountPage() {
       <Divider />
       <div className="flex flex-col gap-4">
         <AccountInput
-          register={register}
-          name="phone"
-          label="Phone Number"
-          value="0612345678"
-          type={InputType.PHONE}
-          isReadOnly={readOnly}
           icon={<PhoneIcon className="bg-tvblue text-white rounded-full p-2" />}
+          isReadOnly={readOnly}
+          label="Phone Number"
+          name="phone"
+          register={register}
+          type={InputType.PHONE}
+          value="0612345678"
         />
         <AccountInput
-          register={register}
-          name="email"
-          label="Email Address"
-          value="janice.devries@toverland.nl"
-          type={InputType.EMAIL}
-          isReadOnly={readOnly}
           icon={<EmailIcon className="bg-tvblue text-white rounded-full p-2" />}
+          isReadOnly={readOnly}
+          label="Email Address"
+          name="email"
+          register={register}
+          type={InputType.EMAIL}
+          value="janice.devries@toverland.nl"
         />
         <AccountInput
-          register={register}
-          name="password"
-          label="Password"
-          value="admin123"
-          type={InputType.PASSWORD}
+          icon={
+            <PasswordIcon className="bg-tvblue text-white rounded-full p-2" />
+          }
           isReadOnly={readOnly}
-          icon={<PasswordIcon className="bg-tvblue text-white rounded-full p-2" />}
+          label="Password"
+          name="password"
+          register={register}
+          type={InputType.PASSWORD}
+          value="admin123"
         />
       </div>
 
-      <Button type="submit" variant="ghost" color="primary" className="h-10 rounded-full md:w-24 md:ml-auto">Save</Button>
+      <Button
+        className="h-10 rounded-full md:w-24 md:ml-auto"
+        color="primary"
+        type="submit"
+        variant="ghost"
+      >
+        Save
+      </Button>
     </form>
   );
 }
