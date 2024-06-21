@@ -4,11 +4,7 @@ import { Button, Input, Link } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form"
-
-type FormData = {
-  email: string
-  password: string
-}
+import { AccountData } from "../../types/account";
 
 export default function LoginPage() {
   const router = useRouter()
@@ -18,9 +14,29 @@ export default function LoginPage() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormData>()
+  } = useForm<AccountData>()
 
-  const onSubmit: SubmitHandler<FormData> = (data) => router.push('/dashboard')
+  const onSubmit: SubmitHandler<AccountData> = async (data) => {
+    try {
+      const response = await fetch('https://localhost:7191/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const res = await response.json();
+      console.log(res);
+      router.push('/dashboard');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div>

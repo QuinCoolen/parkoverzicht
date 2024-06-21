@@ -6,6 +6,7 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import { Button } from "@nextui-org/react";
 
 export default function Home() {
   return (
@@ -34,14 +35,10 @@ export default function Home() {
         >
           Documentation
         </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
+
+        <Button color="primary">
+          Button
+        </Button>
       </div>
 
       <div className="mt-8">
