@@ -1,58 +1,37 @@
 
 import { Listbox, ListboxItem } from '@nextui-org/react';
-import Image from 'next/image';
-import { World } from '@/types/world';
-import { Selection } from '@/components/dashboard/selection';
-import { Attraction } from '../../../types/attraction';
+import { Attraction } from '@/types/attraction';
+import { AttractionHero } from '@/components/attraction/hero';
+import { useState } from 'react';
 
-const getWorld = async (worldId: Number) => {
-  const response = await fetch(`http://localhost:5000/api/worlds/${worldId}`);
+const getAttraction = async (attractionId: Number) => {
+  const response = await fetch(`http://localhost:5000/api/attractions/${attractionId}`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch data');
   }
 
-  const data: World = await response.json();
+  const data: Attraction = await response.json();
 
   return data;
 };
 
-const calculateVisitors = (world: World) => {
-  let visitors = 0;
-
-  world.attractions.map((attraction: Attraction) => {
-    visitors += attraction.VisitorsInQueue || 0;
-    visitors += attraction.VisitorsOnRide || 0;
-  });
-
-  return visitors;
-}
-
-export default async function DashboardPage({ params }: { params: { id: number } }) {
-  const world = await getWorld(params.id) || [];
-  const visitors = calculateVisitors(world);
+export default async function DashboardPage({ params }: { params: { worldId: number, attractionId: number } }) {
+  
+  const attraction = await getAttraction(params.attractionId) || [];
 
   return (
     <>
       <div className="bg-tvblue w-full h-full bg-opacity-15">
         <div className="flex justify-between w-2/3 mx-auto py-10">
-          <Image
-            alt="logo"
-            className="shadow-md"
-            height={500}
-            src="/plattegrond.png"
-            width={500}
-          />
-          <div className="w-full h-full max-w-[360px] border-small rounded-small border-default-200 dark:border-default-100">
-            <Selection items={world.attractions} isWorld={false}/>
-          </div>
+            <AttractionHero attraction={attraction} />
         </div>
       </div>
       <div className="flex flex-row justify-around w-2/3 p-16">
         <div className="bg-blue-500 shadow-lg text-white p-8 w-2/5">
           <h2 className="text-2xl font-semibold">Algemeen</h2>
           <ul className="list-disc text-lg leading-8">
-            <li>Drukte: {visitors}</li>
+            <li>Drukte: {attraction.visitors}</li>
             <li>Shows:</li>
             <li>Storingen:</li>
             <li>Extra Informatie:</li>

@@ -1,8 +1,11 @@
 export type Attraction = {
   id: number;
   name: string;
-  maxRiders?: number;
-  VisitorsInQueue?: number;
-  VisitorsOnRide?: number;
-  isOpen?: boolean;
+  disruptions: string;
+  shows: string;
+  visitors: number;
+  misc: string;
+  maxRiders: number;
+  isOpen: boolean;
+  worldId: number;
 };
