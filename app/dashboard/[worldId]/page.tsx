@@ -3,7 +3,7 @@ import { Listbox, ListboxItem } from '@nextui-org/react';
 import Image from 'next/image';
 import { World } from '@/types/world';
 import { Selection } from '@/components/dashboard/selection';
-import { Attraction } from '../../../types/attraction';
+import { Attraction } from '@/types/attraction';
 
 const getWorld = async (worldId: Number) => {
   const response = await fetch(`http://localhost:5000/api/worlds/${worldId}`);
@@ -84,28 +84,6 @@ export default async function DashboardPage({ params }: { params: { worldId: num
             </div>  
             <button className="bg-blue-800 text-white font-bold py-2 px-4 w-full">
               Informatie toevoegen
-            </button>
-          </div>
-
-          <div className="flex overflow-hidden w-full">
-            <div className="bg-red-400 text-white flex items-center justify-center px-4">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 5l7 7-7 7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
-            <button className="bg-blue-800 text-white font-bold py-2 px-4 w-full">
-              Mededeling Toevoegen
             </button>
           </div>
 

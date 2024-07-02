@@ -62,6 +62,7 @@ export const AttractionHero = (props: ListBoxProps) => {
       <Listbox
         aria-label="Actions"
         selectionMode='single'
+        defaultSelectedKeys={['disruptions']}
         classNames={{
           base: 'bg-transparent h-full w-fit border-none',
           list: 'max-h-[356px] overflow-y-scroll no-scrollbar',

@@ -33,14 +33,16 @@ export default async function DashboardPage({ params }: { params: { worldId: num
           <ul className="list-disc text-lg leading-8">
             <li>Drukte: {attraction.visitors}</li>
             <li>Shows:</li>
+            <p className="text-sm">
+              {attraction.shows}
+            </p>
             <li>Storingen:</li>
+            <p className="text-sm">
+              {attraction.disruptions}
+            </p>
             <li>Extra Informatie:</li>
             <p className="text-sm">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient mon, consectetuer adipiscing
-              elit.    commodo ligula eget dolor. Aenean massa. Cum sociis
-              natoque penatibu.
+              {attraction.misc}
             </p>
           </ul>
         </div>
@@ -64,28 +66,6 @@ export default async function DashboardPage({ params }: { params: { worldId: num
             </div>  
             <button className="bg-blue-800 text-white font-bold py-2 px-4 w-full">
               Informatie toevoegen
-            </button>
-          </div>
-
-          <div className="flex overflow-hidden w-full">
-            <div className="bg-red-400 text-white flex items-center justify-center px-4">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 5l7 7-7 7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
-            <button className="bg-blue-800 text-white font-bold py-2 px-4 w-full">
-              Mededeling Toevoegen
             </button>
           </div>
 
